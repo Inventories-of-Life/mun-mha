@@ -1,0 +1,112 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
+  {% else %}
+  <header class="masthead">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ page.firstname }}{% if page.middlenames.size>0 %} {{ page.middlenames }}{% endif %} {{ page.lastname }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">  
+        {{ page.description }}
+      </div>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="iteminfo">
+          <li><strong>Place of Death:</strong> {{ page.pod }}</li>
+          <li><strong>Date of Death:</strong> {{ page.dod }}</li>
+          <li><strong>Medical:</strong>
+            <ul class="list">
+              {% for medical in page.medical %}
+                <li><strong>Cause of Death:</strong> {{ medical.causeofdeath }}</li>
+                <li><strong>Treatment:</strong> {{ medical.treatment }}</li>
+                <li><strong>Circumstances:</strong> {{ medical.circumstances }}</li>
+              {% endfor %}
+            </ul>
+          </li>
+        </ul>
+        <hr>
+        <ul class="taglist">
+          {% for tag in page.tags %}
+          <li>
+            <a href="{{ site.domain }}/tags/{{ tag | slugify }}">{{ tag }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h3>Ships</h3>
+        <h6>Crew</h6>
+        <ul class="list">
+          {% for ship in site.ships %}
+            {% for crew in ship.crew %}
+              {% if crew.iof_id.size>0 %}
+              {% assign crew_members = site.people | where:"iof_id", crew.iof_id %}
+                {% for person in crew_members %}
+                  <li>
+                    <a href="{{ site.domain }}/ships/{{ ship.slug }}">{{ ship.name }}</a>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </ul>
+        <h6>Captain</h6>
+        <ul class="list">
+          {% for ship in site.ships %}
+            {% for captain in ship.captains %}
+              {% if captain.iof_id.size>0 %}
+              {% assign captains = site.people | where:"iof_id", captain.iof_id %}
+                {% for person in captains %}
+                  <li>
+                    <a href="{{ site.domain }}/ships/{{ ship.slug }}">{{ ship.name }}</a>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </ul>
+        <h6>Owner</h6>
+        <ul class="list">
+          {% for ship in site.ships %}
+            {% for owner in ship.owners %}
+              {% if owner.iof_id.size>0 %}
+              {% assign owners = site.people | where:"iof_id", owner.iof_id %}
+                {% for person in owners %}
+                  <li>
+                    <a href="{{ site.domain }}/ships/{{ ship.slug }}">{{ ship.name }}</a>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h3>Inventories</h3>
+        <ul class="list">
+          {% for inventory in site.inventories %}
+            {% if inventory.owner == page.iof_id %}
+            <li>
+              <a href="{{ site.domain }}/inventories/{{ inventory.slug }}">{{ inventory.iof_id }}</a>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>

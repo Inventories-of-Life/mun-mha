@@ -1,0 +1,95 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
+  {% else %}
+  <header class="masthead">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ page.name }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">  
+        {{ page.description }}
+      </div>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="iteminfo">
+          <li><strong>Official Number:</strong> {{ page.officialnumber }}</li>
+          <li><strong>Port of Registry:</strong> {{ page.portofregistry }}</li>
+          <li><strong>Tonnage:</strong> {{ page.tonnage }}</li>
+          <li><strong>Type:</strong> {{ page.type }}</li>
+          <li><strong>Commissioned:</strong> {{ page.commissioned }}</li>
+          <li><strong>Decommissioned:</strong> {{ page.decommissioned }}</li>
+        </ul>
+        <hr>
+        <ul class="taglist">
+          {% for tag in page.tags %}
+          <li>
+            <a href="{{ site.domain }}/tags/{{ tag | slugify }}">{{ tag }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h6>Crew</h6>
+        <ul class="list">
+            {% for crew in page.crew %}
+              {% if crew.iof_id.size>0 %}
+              {% assign crew_members = site.people | where:"iof_id", crew.iof_id %}
+                {% for person in crew_members %}
+                  <li>
+                    <a href="{{ site.domain }}/people/{{ person.slug }}">{{ person.firstname }}{% if person.middlenames.size>0 %} {{ person.middlenames }}{% endif %} {{ person.lastname }}</a>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+        </ul>
+        <h6>Captains</h6>
+        <ul class="list">
+            {% for captain in page.captains %}
+              {% if captain.iof_id.size>0 %}
+              {% assign captains = site.people | where:"iof_id", captain.iof_id %}
+                {% for person in captains %}
+                  <li>
+                    <a href="{{ site.domain }}/people/{{ person.slug }}">{{ person.firstname }}{% if person.middlenames.size>0 %} {{ person.middlenames }}{% endif %} {{ person.lastname }}</a>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+        </ul>
+        <h6>Owners</h6>
+        <ul class="list">
+            {% for owner in page.owners %}
+              {% if owner.iof_id.size>0 %}
+              {% assign owners = site.people | where:"iof_id", owner.iof_id %}
+                {% for person in owners %}
+                  <li>
+                    <a href="{{ site.domain }}/people/{{ person.slug }}">{{ person.firstname }}{% if person.middlenames.size>0 %} {{ person.middlenames }}{% endif %} {{ person.lastname }}</a>
+                  </li>
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+        </ul>
+      </div>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h3>Voyages</h3>
+        <ul class="list">
+          {% for voyage in page.voyages %}
+            <li><strong>{{ voyage.port }}:</strong> {{ voyage.departure }}, {{ voyage.arrival }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>

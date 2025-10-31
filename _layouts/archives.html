@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
+  {% else %}
+  <header class="masthead">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ page.name }}</h1>
+            <h2 class="subheading">Archive {% if page.institution.size>0 %}at {{ page.institution }}{% endif %}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% if page.institution.size>0 %}<p>{{ page.description }}</p>{% endif %}
+
+        <hr>
+        <ul class="taglist">
+          {% for tag in page.tags %}
+          <li>
+            <a href="{{ site.domain }}/tags/{{ tag | slugify }}">{{ tag }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h3>Documents</h3>
+        <ul class="list">
+          {% for document in site.documents %}
+            {% if document.archive==page.iof_id %}
+            <li>
+              <a href="{{ site.domain }}/documents/{{ document.slug }}">{{ document.iof_id }}</a>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>

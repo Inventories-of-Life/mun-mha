@@ -2,7 +2,6 @@ title:              Inventories of Life
 email:              inventoriesoflife@gmail.com
 description:        A Website about Life on the Sea
 author:             Julia C. Stryker
-baseurl:            "/"
 url:                "https://inventoriesoflife.github.io"
 
 # Social Profiles
@@ -11,6 +10,9 @@ github_username:
 facebook_username:  
 instagram_username:  
 linkedin_username:
+
+# Advanced
+language: "en"
 
 # Add your google-analytics ID here to activate google analytics
 google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
@@ -23,3 +25,56 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
+
+# SASS
+sass:
+  style: compressed
+
+# Exclude my node related stuff
+exclude: [
+  'package.json',
+  'package-lock.json',
+  'src',
+  'node_modules',
+  'initproject.sh',
+  'Gemfile',
+  'Gemfile.lock',
+  'gulpfile.js',
+  'README.md',
+  "debugOutput.txt",
+  "vendor/bundle/",
+  "vendor/cache/",
+  "vendor/gems/",
+  "vendor/ruby/"
+]
+
+collections:
+  ships:
+    output: true
+    permalink: /ships/:slug/
+  archives:
+    output: true
+    permalink: /archives/:slug/
+  people:
+    output: true
+    permalink: /people/:slug/
+  inventories:
+    output: true
+    permalink: /inventories/:slug/
+  researchers:
+    output: true
+    permalink: /about/researchers/:slug/
+  documents:
+    output: true
+    permalink: /documents/:slug/
+  tags:
+    output: true
+    permalink: /tags/:slug/
+
+
+# Theme
+version: v1.0.0
+
+# Construction / Preview
+construction: false
+constructionmessage: Release Date - Nov. 20

@@ -12,8 +12,8 @@ layout: default
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="page-heading">
-            <h1>{{ page.title }}</h1>
+          <div class="post-heading">
+            <h1>Ships</h1>
           </div>
         </div>
       </div>
@@ -23,9 +23,13 @@ layout: default
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-
-        {{ content }}
-
+        <ul class="contentslist">
+          {% for ship in site.ships %}
+            <li>
+              <a href="{{ site.domain }}/ships/{{ ship.slug }}">{{ ship.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
   </div>

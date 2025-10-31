@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
+  {% else %}
+  <header class="masthead">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ page.title }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h6>People</h6>
+        <ul class="list">
+            {% for person in site.people %}
+              {% if person.tags contains page.title %}
+                <li>
+                    <a href="{{ site.domain }}/people/{{ person.slug }}">{{ person.firstname }}{% if person.middlenames.size>0 %} {{ person.middlenames }}{% endif %} {{ person.lastname }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+        </ul>
+        <h6>Ships</h6>
+        <ul class="list">
+            {% for ship in site.ships %}
+              {% if ship.tags contains page.title %}
+                <li>
+                    <a href="{{ site.domain }}/ships/{{ ship.slug }}">{{ ship.name }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+        </ul>
+        <h6>Inventories</h6>
+        <ul class="list">
+            {% for inventory in site.inventories %}
+              {% if inventory.tags contains page.title %}
+                <li>
+                    <a href="{{ site.domain }}/inventories/{{ inventory.slug }}">{{ inventory.iof_id }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+        </ul>
+        <h6>Documents</h6>
+        <ul class="list">
+            {% for document in site.documents %}
+              {% if document.tags contains page.title %}
+                <li>
+                    <a href="{{ site.domain }}/documents/{{ document.slug }}">{{ document.title }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>

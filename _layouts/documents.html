@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
+  {% else %}
+  <header class="masthead">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ page.iof_id }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="iteminfo">
+          <li><strong>Document ID:</strong> {{ page.iof_id }}</li>
+          <li><strong>Archive:</strong> {% for archive in site.archives %}{% if archive.iof_id==page.archive %}<a href="{{ site.domain }}/archives/{{ archive.slug }}">{{ archive.name }}</a>{% endif %}{% endfor %}</li>
+          <li><strong>Archive ID:</strong> {{ page.archiveid }}</li>
+          <li><strong>Institution:</strong> {{ page.institution }}</li>
+          <li><strong>Document Type:</strong> {{ page.documenttype }}</li>
+        </ul>
+      </div>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h3>Contains</h3>
+        <ul class="contentslist">
+          {% for inventory in site.inventories %}
+            {% if inventory.document==page.iof_id %}
+            <li>
+              <a href="{{ site.domain }}/inventories/{{ inventory.slug }}">{{ inventory.iof_id }}</a>
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>

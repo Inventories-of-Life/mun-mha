@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
+  {% else %}
+  <header class="masthead">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ page.iof_id }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% assign owners = site.people | where:"iof_id", page.owner %}
+        {% for owner in owners %}
+          <p><a href="{{ site.domain }}/people/{{ owner.slug }}">{{ owner.firstname }}{% if owner.middlenames.size>0 %} {{ owner.middlenames }}{% endif %} {{ owner.lastname }}</a></p>
+        {% endfor %}
+        <p>Appears in: <a href="{{ site.domain }}/documents/{{ page.document }}">{{ page.document }}</a></p>
+      </div>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="iteminfo">
+          {% for item in page.items %}
+            <li><strong>{{ item.item }}:</strong> {{ item.quantity }}, {{ item.value }}<br>
+              <ul class="taglist">
+                {% for tag in item.tags %}
+                <li>
+                  <a href="{{ site.domain }}/tags/{{ tag | slugify }}">{{ tag }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div> 
+  </div>
