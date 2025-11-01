@@ -1,0 +1,29 @@
+
+{%- if alphanumericctls -%}
+<div class="alphanumeric_ctls col-lg-12 mx-auto"><span class="filteralphanum" data-value="a">a</span><span class="filteralphanum" data-value="b">b</span><span class="filteralphanum" data-value="c">c</span>
+  <span class="filteralphanum" data-value="d">d</span><span class="filteralphanum" data-value="e">e</span><span class="filteralphanum" data-value="f">f</span>
+  <span class="filteralphanum" data-value="g">g</span><span class="filteralphanum" data-value="h">h</span><span class="filteralphanum" data-value="i">i</span>
+  <span class="filteralphanum" data-value="j">j</span><span class="filteralphanum" data-value="k">k</span><span class="filteralphanum" data-value="l">l</span>
+  <span class="filteralphanum" data-value="m">m</span><span class="filteralphanum" data-value="n">n</span><span class="filteralphanum" data-value="o">o</span>
+  <span class="filteralphanum" data-value="p">p</span><span class="filteralphanum" data-value="q">q</span><span class="filteralphanum" data-value="r">r</span>
+  <span class="filteralphanum" data-value="s">s</span><span class="filteralphanum" data-value="t">t</span><span class="filteralphanum" data-value="u">u</span>
+  <span class="filteralphanum" data-value="v">v</span><span class="filteralphanum" data-value="w">w</span><span class="filteralphanum" data-value="x">x</span>
+  <span class="filteralphanum" data-value="y">y</span><span class="filteralphanum" data-value="z">z</span>
+  {%- if numericctls -%}<span class="filteralphanum" data-value="0">0</span>
+  <span class="filteralphanum" data-value="1">1</span><span class="filteralphanum" data-value="2">2</span><span class="filteralphanum" data-value="3">3</span>
+  <span class="filteralphanum" data-value="4">4</span><span class="filteralphanum" data-value="5">5</span><span class="filteralphanum" data-value="6">6</span>
+  <span class="filteralphanum" data-value="7">7</span><span class="filteralphanum" data-value="8">8</span><span class="filteralphanum" data-value="9">9</span>
+  {%- endif -%}
+</div>
+{%- endif -%}
+<div class="col-lg-12 mx-auto">
+    <div class="filtersummary">
+        <span class="filtersummary-shown">all</span> of <span class="filtersummary-total">0</span>
+    </div>
+    <div class="filter">
+        <div class="wrapper">
+            <input type="text" class="resultsfilter filter-field" data-search placeholder="{{ filterplaceholder }}" onsubmit="return false;">
+            <svg class="filter-close icon-remove-sign"><use xlink:href="#icon-close"></use></svg>
+        </div>
+    </div>
+</div>

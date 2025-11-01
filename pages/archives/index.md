@@ -2,6 +2,6 @@
 layout: archivesindex
 title: Archives
 description: Describes what the project is about.
-background: '/img/bg-about.jpg'
+background: 'assets/img/bg-index.jpg'
 permalink: /archives/
 ---

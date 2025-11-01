@@ -11,7 +11,7 @@ layout: default
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="col-lg-12 mx-auto">
           <div class="page-heading">
             <h1>{{ site.title }}</h1>
             {% if site.description %}
@@ -25,42 +25,76 @@ layout: default
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-
+      <div class="col-lg-12 col-md-12 mx-auto">
         {{ content }}
-
-        <!-- Home Post List -->
-        {% for post in site.posts limit : 5 %}
-
-        <article class="post-preview">
-          <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
-            <h2 class="post-title">{{ post.title }}</h2>
-            {% if post.subtitle %}
-            <h3 class="post-subtitle">{{ post.subtitle }}</h3>
-            {% else %}
-            <h3 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h3>
-            {% endif %}
-          </a>
-          <p class="post-meta">Posted by
-            {% if post.author %}
-            {{ post.author }}
-            {% else %}
-            {{ site.author }}
-            {% endif %}
-            on
-            {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}            
-          </p>
-        </article>
-
-        <hr>
-
-        {% endfor %}
-
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="{{"/posts" | relative_url }}">View All Posts &rarr;</a>
-        </div>
-
       </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <h3>Latest Posts</h3>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Home Post List -->
+      {% assign latestposts = site.posts | sort: 'date' | reverse %}
+      {% for post in latestposts limit : 3 %}
+      <div class="col-lg-4 col-md-6 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <a href="{{ site.domain }}/posts/{{ post.url }}">
+              <h3 class="card-title">{{ post.title }}</h3>
+              <p class="card-text">{{ post.excerpt | strip_html | truncatewords: 15 }}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <a class="btn btn-primary float-right" href="{{"/posts" | relative_url }}">View All Posts &rarr;</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <h3>Latest Ships</h3>
+      </div>
+    </div>
+    <div class="row">
+      <!-- Ships Post List -->
+      {% assign latestships = site.ships | sort: 'created' | reverse %}
+      {% for ship in latestships limit : 6 %}
+      <div class="col-lg-2 col-md-4 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <a href="{{ site.domain }}/ships/{{ ship.slug }}">
+              <h3 class="card-title">{{ ship.name }}</h3>
+              <p class="card-text">{{ ship.excerpt | strip_html | truncatewords: 15 }}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <h3>Latest People</h3>
+      </div>
+    </div>
+    <div class="row">
+      <!-- People Post List -->
+      {% assign latestpeople = site.people | sort: 'created' | reverse %}
+      {% for person in latestpeople limit : 3 %}
+      <div class="col-lg-2 col-md-4 mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <a href="{{ site.domain }}/people/{{ person.slug }}">
+              <h3 class="card-title">{{ person.firstname }}{% if person.middlenames.size>0 %} {{ person.middlenames }}{% endif %} {{ person.lastname }}</h3>
+              <p class="card-text">{{ person.excerpt | strip_html | truncatewords: 15 }}</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>

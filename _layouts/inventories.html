@@ -4,15 +4,16 @@ layout: default
 
 <!-- Page Header -->
 {% if page.background %}
-<header class="masthead" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
+<header class="masthead small" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
   {% else %}
-  <header class="masthead">
+  <header class="masthead small">
     {% endif %}
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
+        <div class="col-lg-12 mx-auto">
+          <div class="page-heading">
+            <h2>Inventories</h2>
             <h1>{{ page.iof_id }}</h1>
           </div>
         </div>
@@ -22,27 +23,42 @@ layout: default
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-        {% assign owners = site.people | where:"iof_id", page.owner %}
-        {% for owner in owners %}
-          <p><a href="{{ site.domain }}/people/{{ owner.slug }}">{{ owner.firstname }}{% if owner.middlenames.size>0 %} {{ owner.middlenames }}{% endif %} {{ owner.lastname }}</a></p>
-        {% endfor %}
-        <p>Appears in: <a href="{{ site.domain }}/documents/{{ page.document }}">{{ page.document }}</a></p>
+      <div class="col-lg-12 mx-auto">
+        {% if page.owner.size>0 %}
+          {% assign owner = '' %}
+          {% assign owners = site.people | where:"iof_id", page.owner %}
+          {% for owner in owners %}
+            {% capture owner %}
+              <a href="{{ site.domain }}/people/{{ owner.slug }}">{{ owner.firstname }}{% if owner.middlenames.size>0 %} {{ owner.middlenames }}{% endif %} {{ owner.lastname }}</a>
+            {% endcapture %}
+          {% endfor %}
+        {% endif %}
+        <ul class="iteminfo list-unstyled">
+          <li><strong>Owner:</strong> {{ owner }}</li>
+          <li><strong>Part of Document:</strong> <a href="{{ site.domain }}/documents/{{ page.document }}">{{ page.document }}</a></li>
+          <li><strong>IoF ID:</strong> {{ page.iof_id }}</li>
+        </ul>
       </div>
-      <div class="col-lg-8 col-md-10 mx-auto">
-        <ul class="iteminfo">
+      <div class="col-lg-12 mx-auto">
+        <h4>Items</h4>
+        <table class="inventory table">
+          <tr><th>Item</th><th>Quantity</th><th>Value</th><th>Tags</th></tr>
           {% for item in page.items %}
-            <li><strong>{{ item.item }}:</strong> {{ item.quantity }}, {{ item.value }}<br>
-              <ul class="taglist">
-                {% for tag in item.tags %}
-                <li>
-                  <a href="{{ site.domain }}/tags/{{ tag | slugify }}">{{ tag }}</a>
-                </li>
+            <tr><td>{{ item.item }}</strong></td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.value }}</td>
+              <td>
+                <ul class="list-unstyled">
+                  {% for tag in item.tags %}
+                  <li>
+                    <a href="{{ site.domain }}/tags/{{ tag | slugify }}">{{ tag }}</a>
+                  </li>
                 {% endfor %}
               </ul>
             </li>
           {% endfor %}
-        </ul>
+        </table>
       </div>
-    </div> 
+    </div>
+    {%- include metadata.html -%}
   </div>

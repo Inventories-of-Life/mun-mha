@@ -4,15 +4,15 @@ layout: default
 
 <!-- Page Header -->
 {% if page.background %}
-<header class="masthead" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
+<header class="masthead small" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
   {% else %}
-  <header class="masthead">
+  <header class="masthead small">
     {% endif %}
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
+        <div class="col-lg-12 mx-auto">
+          <div class="page-heading">
             <h1>{{ page.name }}</h1>
             <h2 class="subheading">Archive {% if page.institution.size>0 %}at {{ page.institution }}{% endif %}</h2>
           </div>
@@ -23,11 +23,11 @@ layout: default
 
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="col-lg-12 mx-auto">
         {% if page.institution.size>0 %}<p>{{ page.description }}</p>{% endif %}
 
         <hr>
-        <ul class="taglist">
+        <ul class="taglist list-inline">
           {% for tag in page.tags %}
           <li>
             <a href="{{ site.domain }}/tags/{{ tag | slugify }}">{{ tag }}</a>
@@ -35,9 +35,9 @@ layout: default
           {% endfor %}
         </ul>
       </div>
-      <div class="col-lg-8 col-md-10 mx-auto">
+      <div class="col-lg-12 mx-auto">
         <h3>Documents</h3>
-        <ul class="list">
+        <ul class="list-unstyled">
           {% for document in site.documents %}
             {% if document.archive==page.iof_id %}
             <li>
