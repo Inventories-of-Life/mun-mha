@@ -8,10 +8,9 @@ slug: joseph-hyme-001
 description: >-
 dod: 1872-08-28
 pod: 39-20N;65-50W
-medical:
-  - causeofdeath: Drowned
-    treatment: None
-    circumstances: Fell Overboard
+occupation:
+incidents:
+  - incident001
 inventories:
   - inv001
 tags: 

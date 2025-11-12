@@ -8,10 +8,8 @@ slug: test-person-002
 description: >-
 dod: 1872-08-28
 pod: 39-20N;65-50W
-medical:
-  - causeofdeath: Drowned
-    treatment: None
-    circumstances: Fell Overboard
+occupation:
+incidents:
 inventories:
   - inv001
 tags: 

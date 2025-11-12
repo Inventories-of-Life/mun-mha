@@ -20,16 +20,9 @@ voyages:
   - port: Philadelphia
     departure:
     arrival: 
-owners:
-  - iof_id: 
-    start: 
-    end: 
-captains:
-  - iof_id: 
-    start: 
-    end: 
-crew: 
+people:
   - iof_id: person001
+    role:
     start: 
     end: 
 tags: 

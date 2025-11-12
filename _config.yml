@@ -61,6 +61,9 @@ collections:
   inventories:
     output: true
     permalink: /inventories/:slug/
+  incidents:
+    output: true
+    permalink: /incidents/:slug/
   researchers:
     output: true
     permalink: /about/researchers/:slug/

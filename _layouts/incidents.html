@@ -1,0 +1,71 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead small" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
+  {% else %}
+  <header class="masthead small">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+          <div class="page-heading">
+            <h2>Medical Incidents</h2>
+            <h1>{{ page.iof_id }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <ul class="iteminfo list-unstyled">
+          <li><strong>Document ID:</strong> {{ page.documentid }}</li>
+          <li><strong>Ship:</strong> {{ page.ship }}</li>
+          <li><strong>Location:</strong> {{ page.location }}</li>
+          <li><strong>IoF ID:</strong> {{ page.iof_id }}</li>
+        </ul>
+      </div>
+      <div class="col-lg-12 mx-auto">
+        <h3>Treatments</h3>
+        <ul class="list-unstyled">
+          {% for treatment in page.medical %}
+            <li>
+              {% if treatment.treatment.size>0 %}
+                <strong>Treatment:</strong> {{ treatment.treatment }}<br>
+              {% endif %}
+              {% if treatment.outcome.size>0 %}
+                <strong>Outcome:</strong> {{ treatment.outcome }}<br>
+              {% endif %}
+              {% if treatment.circumstances.size>0 %}
+                <strong>Circumstances:</strong> {{ treatment.circumstances }}<br>
+              {% endif %}
+              {% if treatment.provider.size>0 %}
+                <strong>Provider:</strong> 
+                {% assign providers = site.people | where:"iof_id", treatment.provider %}
+                {% for provider in providers %}
+                  <a href="{{ site.domain }}/people/{{ provider.slug }}">{{ provider.firstname }}{% if provider.middlenames.size>0 %} {{ provider.middlenames }}{% endif %} {{ provider.lastname }}</a>
+                {% endfor %}
+                ({{ treatment.providerrole }})<br>
+              {% endif %}
+              {% if treatment.patient.size>0 %}
+                <strong>Patient:</strong> 
+                {% assign patients = site.people | where:"iof_id", treatment.patient %}
+                {% for patient in patients %}
+                  <a href="{{ site.domain }}/people/{{ patient.slug }}">{{ patient.firstname }}{% if patient.middlenames.size>0 %} {{ patient.middlenames }}{% endif %} {{ patient.lastname }}</a>
+                {% endfor %}
+                ({{ treatment.patientrole }})<br>
+              {% endif %}
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {%- include metadata.html -%}
+  </div>
