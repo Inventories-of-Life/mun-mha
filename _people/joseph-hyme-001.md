@@ -10,9 +10,9 @@ dod: 1872-08-28
 pod: 39-20N;65-50W
 occupation:
 incidents:
-  - incident001
+  - incident002
 inventories:
-  - inv001
+  - inv002
 tags: 
   - Crew Members
 published: true

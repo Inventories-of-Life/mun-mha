@@ -3,12 +3,9 @@ layout: incidents
 iof_id: incident001
 slug: incident001
 documentid:
-incidentdate: 1873-10-31
-location: 45-30N;73-35W
-ship: Texas65988
-incidenttype: 
-  - Boarding
-  - Stowaway
+incidentdate:
+location:
+ship: 
 medical:
   - treatment:
     outcome:
@@ -17,7 +14,7 @@ medical:
     providerrole:
     patient: 
     patientrole:
-leftship:
+leftship: 
 published: true
 created: 2025-11-04
 createdby: mmilner
