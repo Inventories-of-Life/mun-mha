@@ -3,7 +3,7 @@ email:              inventoriesoflife@gmail.com
 description:        A Website about Life on the Sea
 author:             Julia C. Stryker
 url:                "https://inventories-of-life.github.io"
-remote_theme:       StartBootstrap/startbootstrap-clean-blog-jekyll
+remote_theme:       Inventories-of-Life/iol-theme
 
 # Social Profiles
 twitter_username:   
