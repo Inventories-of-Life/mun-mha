@@ -1,0 +1,30 @@
+@import "./variables/colors.scss";
+@import "./variables/typography.scss";
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$custom-grid-breakpoints: (
+  xxl: 1500px,
+  wd: 1900px
+);
+
+$grid-breakpoints: map-merge($grid-breakpoints, $custom-grid-breakpoints);
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$custom-max-widths: (
+  xxl: 1420px,
+  wd: 1800px
+);
+
+$container-max-widths: map-merge($container-max-widths, $custom-max-widths);
+
+@include _assert-ascending($container-max-widths, "$container-max-widths");

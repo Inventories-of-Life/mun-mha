@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead" style="background-image: url('{{ site.domain }}/{{ page.background }}')">
+  {% else %}
+  <header class="masthead">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 mx-auto">
+          <div class="page-heading">
+            <h1>Documents</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      {%- assign filterplaceholder ='filter' -%}
+      {%- assign alphanumericctls = false -%}
+      {%- assign numericctls = true -%}
+      {%- include resultsfilter.html -%}
+    </div>
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <ul class="contentslist filterablelist list">
+          {% for document in site.documents %}
+            <li>
+              <a href="{{ document.slug | prepend: site.baseurl | replace: '//', '/' }}">{{ document.iof_id }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+
+      </div>
+    </div>
+  </div>

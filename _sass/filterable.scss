@@ -1,0 +1,134 @@
+.filterablelist {
+    width: 100%;
+    padding: 0;
+    li{
+        list-style:none;
+        float:left;
+        padding:0.5em;
+    }
+}
+.tags{
+  .filterablelist {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap;
+    li{
+        padding:0;
+    }
+  }
+}
+.filtersummary,.alphanumeric_ctls{
+    float: left;
+    height: 40px;
+    line-height: 42px;
+    font-family: "Titillium Web", "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1rem;
+    margin-left: 0;
+    color: $dark;
+}
+.filtersummary{
+    flex-basis: 25%;
+    order: 1;
+    @media only screen and (min-width: 1024px) {
+      flex-basis: 22%;
+    }
+}
+
+.filter {
+    position: relative;
+    float: right;
+    flex-basis: 100%;
+    order: 3;
+    @media only screen and (min-width: 768px) {
+        flex-basis: unset;
+        order: unset;
+    }
+    .wrapper{
+        position: relative;
+        float: right;
+    }
+    .filter-field{
+        width: 100%;
+        @media only screen and (min-width: 768px) {
+            width: 300px;
+        }
+        height: 40px;
+        line-height: 30px;
+        font-family: "Titillium Web", "Helvetica Neue", Helvetica, sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        font-size: 20px;
+        color: $dark;
+        background-color: $white;
+        border: 1;
+        border-radius: 20px;
+        padding: 5px 25px;
+        outline: 0;
+    }
+    .icon-remove-sign {
+        position: absolute;
+        top: 0;
+        left: calc(100% - 40px);
+        @media only screen and (min-width: 768px) {
+            left: 260px;
+        }
+        display: block;
+        width: 26px;
+        height: 26px;
+        padding: 5px;
+        fill: $white;
+        background-color: $primary;
+        border-radius: 13px;
+        margin: 7px;
+        cursor: pointer;
+        outline: 0;
+        z-index: 1;
+    }
+}
+.alphanumeric_ctls{
+    order: 3;
+    line-height: unset;
+    height: unset;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+
+    @media only screen and (min-width: 1024px) {
+        margin-left:16px;
+        margin-right:16px;
+        order: 2;
+        height: 40px;
+        line-height: 42px;
+    }
+    span{
+        display:inline-block;
+        padding: 0.5rem 0.25rem;
+        line-height: 24px;
+        @media only screen and (min-width: 1024px) {
+            margin-right: 2px;
+        }
+        &:hover{
+            font-weight:bold;
+            cursor:pointer;
+            color: $primary;
+            background-color: transparent;
+        }
+        &.clicked{
+            background-color: $primary;
+            color: $white;
+            font-weight:bold;
+        }
+    }
+    &+.filter {
+        flex-basis: 75%;
+        order: 2;
+        @media only screen and (min-width: 1024px) {
+            flex-basis: 20%;
+            order: 3;
+        }
+    }
+}

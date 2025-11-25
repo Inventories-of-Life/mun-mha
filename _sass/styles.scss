@@ -1,0 +1,69 @@
+// Import Core Clean Blog SCSS
+@import "../assets/vendor/startbootstrap-clean-blog/scss/styles.scss";
+
+
+// Custom Styles
+.container{
+    @media only screen and (min-width: 576px) {
+        padding: 0;
+    }
+    .row{
+        > .col-lg-12{
+            > table{
+                tr {
+                    > th,
+                    > td {
+                        &:first-of-type{
+                            padding-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+header.masthead {
+    &.small{
+        .page-heading,
+        .post-heading,
+        .site-heading {
+            padding: 80px 0 30px;
+            text-align: left;
+            @media only screen and (min-width: 768px) {
+                padding: 80px 0;
+            }
+        }
+    }
+}
+
+ul{
+    &.taglist {
+        li{
+            margin-right: 10px;
+            margin-bottom: 10px;
+            a{
+                text-decoration: none;
+                color: black;
+                padding: 5px 8px;
+                border-radius: 3px;
+                border: 1px solid transparent;
+                &:hover{
+                    background-color: #d3d3d3;
+                    border: 1px solid black;
+                }
+            }
+        }
+    }
+}
+
+#mainNav {
+    @media only screen and (min-width: 992px) {
+        .navbar-brand {
+            padding: 10px 20px 10px 0;
+        }
+    }
+}
+
+#metadata {
+    font-size: 0.85rem;
+}
